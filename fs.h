@@ -171,6 +171,7 @@ public:
     case SYS_epoll_ctl_old:
     case SYS_epoll_wait_old:
 #endif
+    case SYS_ppoll:
     case SYS_restart_syscall:
     case SYS_set_tid_address:
     case SYS_fadvise64:
@@ -180,6 +181,7 @@ public:
     case SYS_timer_getoverrun:
     case SYS_timer_delete:
     case SYS_clock_gettime:
+    case SYS_clock_getres:
     case SYS_exit_group:
 #ifdef __x86_64__
     case SYS_epoll_wait:
@@ -202,9 +204,9 @@ public:
     case SYS_pipe2:
     case SYS_preadv:
     case SYS_pwritev:
-      // case SYS_mlock2:
-      // case SYS_preadv2:
-      // case SYS_pwritev2:
+    case SYS_get_mempolicy:
+    case SYS_preadv2:
+    case SYS_pwritev2:
       return;
 #ifdef __x86_64__
     case SYS_open: {
@@ -551,12 +553,10 @@ public:
     // case SYS_remap_file_pages:
     // case SYS_semtimedop:
     // case SYS_clock_settime:
-    // case SYS_clock_getres:
     // case SYS_clock_nanosleep:
     // case SYS_vserver:
     // case SYS_mbind:
     // case SYS_set_mempolicy:
-    // case SYS_get_mempolicy:
     // case SYS_mq_open:
     // case SYS_mq_unlink:
     // case SYS_mq_timedsend:
@@ -575,7 +575,6 @@ public:
     // case SYS_inotify_rm_watch:
     // case SYS_migrate_pages:
     // case SYS_pselect6:
-    // case SYS_ppoll:
     // case SYS_unshare:
     // case SYS_sync_file_range:
     // case SYS_vmsplice:
@@ -658,6 +657,7 @@ public:
     case SYS_munlock:
     case SYS_mlockall:
     case SYS_munlockall:
+    case SYS_mlock2:
     case SYS_mknodat:
       block(i, -EPERM);
       return;
