@@ -2,8 +2,8 @@
 #define CONFIG_H
 
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 extern "C" {
 #include <sys/resource.h>

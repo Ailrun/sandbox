@@ -18,7 +18,7 @@ sandbox: $(OBJS)
 %.o: %.cpp
 	$(CXX) -c -o $@ $< $(CFLAGS) $(CPPFLAGS)
 
-main.o: arch.h sandbox.h sandbox.impl fs.h wakeup.h config.h
+main.o: arch.h sandbox.h fs.h wakeup.h config.h
 
 arch.h:
 	echo '#define ARCH $(ARCH)' > $@
