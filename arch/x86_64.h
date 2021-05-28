@@ -6,19 +6,16 @@
 extern "C" {
 #include <stdint.h>
 #include <string.h>
-}
 
-struct regs_x86_64 {
-  uint64_t r15, r14, r13, r12, rbp, rbx, r11, r10, r9, r8, rax, rcx, rdx, rsi,
-      rdi, orig_rax, rip, cs, eflags, rsp, ss, fs_base, gs_base, ds, es, fs, gs;
-};
+#include <sys/user.h>
+}
 
 struct regs_x86_32 {
   uint32_t ebx, ecx, edx, esi, edi, ebp, eax, ds, es, fs, gs, orig_eax, eip, cs,
       eflags, esp, ss;
 };
 
-class SyscallInfo : public SyscallInfoBase<struct regs_x86_64, uint64_t> {
+class SyscallInfo : public SyscallInfoBase<struct user_regs_struct, unsigned long long> {
 public:
   bool is_compat_regset;
   bool is_compat_table;
@@ -55,9 +52,9 @@ public:
     }
   }
 
-  virtual inline uint64_t &sysnum() { return regs.orig_rax; }
-  virtual inline uint64_t &ret() { return regs.rax; }
-  virtual inline uint64_t &arg(int arg) {
+  virtual inline unsigned long long &sysnum() { return regs.orig_rax; }
+  virtual inline unsigned long long &ret() { return regs.rax; }
+  virtual inline unsigned long long &arg(int arg) {
     if (is_compat_table)
       switch (arg) {
       case 1:
@@ -91,7 +88,7 @@ public:
 
     return regs.rsp;
   }
-  virtual inline uint64_t &stack() { return regs.rsp; }
+  virtual inline unsigned long long &stack() { return regs.rsp; }
 
   bool save() {
     if (is_compat_regset) {

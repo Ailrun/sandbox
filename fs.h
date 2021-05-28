@@ -61,128 +61,153 @@ public:
       if (conf_wakeup)
         do_wakeup();
       return;
-    case __NR_read:
-    case __NR_write:
-    case __NR_close:
-    case __NR_poll:
-    case __NR_lseek:
-    case __NR_mmap:
-    case __NR_mprotect:
-    case __NR_munmap:
-    case __NR_brk:
-    case __NR_rt_sigaction:
-    case __NR_rt_sigprocmask:
-    case __NR_rt_sigreturn:
-    case __NR_ioctl:
-    case __NR_pread64:
-    case __NR_pwrite64:
-    case __NR_readv:
-    case __NR_writev:
-    case __NR_pipe:
-    case __NR_select:
-    case __NR_sched_yield:
-    case __NR_mremap:
-    case __NR_msync:
-    case __NR_mincore:
-    case __NR_madvise:
-    case __NR_dup:
-    case __NR_dup2:
-    case __NR_pause:
-    case __NR_nanosleep:
-    case __NR_getitimer:
-    case __NR_alarm:
-    case __NR_setitimer:
-    case __NR_getpid:
-    case __NR_sendfile:
-    case __NR_exit:
-    case __NR_wait4:
-    case __NR_uname:
-    case __NR_fcntl:
-    case __NR_flock:
-    case __NR_fsync:
-    case __NR_fdatasync:
-    case __NR_ftruncate:
-    case __NR_getdents:
-    case __NR_getdents64:
-    case __NR_getcwd:
-    case __NR_fchdir:
-    case __NR_fchmod:
-    case __NR_fchown:
-    case __NR_umask:
-    case __NR_gettimeofday:
-    case __NR_getrlimit:
-    case __NR_getrusage:
-    case __NR_sysinfo:
-    case __NR_times:
-    case __NR_getuid:
-    case __NR_getgid:
-    case __NR_geteuid:
-    case __NR_getegid:
-    case __NR_setpgid:
-    case __NR_getppid:
-    case __NR_getpgrp:
-    case __NR_getgroups:
-    case __NR_getresuid:
-    case __NR_getresgid:
-    case __NR_getpgid:
-    case __NR_getsid:
-    case __NR_rt_sigpending:
-    case __NR_rt_sigtimedwait:
-    case __NR_rt_sigqueueinfo:
-    case __NR_rt_sigsuspend:
-    case __NR_sigaltstack:
-    case __NR_utime:
-    case __NR_personality:
-    case __NR_fstatfs:
-    case __NR_getpriority:
-    case __NR_sched_getparam:
-    case __NR_sched_getscheduler:
-    case __NR_sched_get_priority_max:
-    case __NR_sched_get_priority_min:
-    case __NR_sched_rr_get_interval:
-    case __NR_arch_prctl:
-    case __NR_setrlimit:
-    case __NR_gettid:
-    case __NR_readahead:
-    case __NR_time:
-    case __NR_futex:
-    case __NR_fgetxattr:
-    case __NR_sched_getaffinity:
-    case __NR_epoll_create:
-    case __NR_epoll_ctl_old:
-    case __NR_epoll_wait_old:
-    case __NR_restart_syscall:
-    case __NR_set_tid_address:
-    case __NR_fadvise64:
-    case __NR_timer_create:
-    case __NR_timer_settime:
-    case __NR_timer_gettime:
-    case __NR_timer_getoverrun:
-    case __NR_timer_delete:
-    case __NR_clock_gettime:
-    case __NR_exit_group:
-    case __NR_epoll_wait:
-    case __NR_epoll_ctl:
-    case __NR_set_robust_list:
-    case __NR_get_robust_list:
-    case __NR_epoll_pwait:
-    case __NR_eventfd:
-    case __NR_eventfd2:
-    case __NR_epoll_create1:
-    case __NR_splice:
-    case __NR_tee:
-    case __NR_timerfd_create:
-    case __NR_timerfd_settime:
-    case __NR_timerfd_gettime:
-    case __NR_dup3:
-    case __NR_pipe2:
-    case __NR_preadv:
-    case __NR_pwritev:
-      // case __NR_mlock2:
-      // case __NR_preadv2:
-      // case __NR_pwritev2:
+    case SYS_read:
+    case SYS_write:
+    case SYS_close:
+#ifdef __x86_64__
+    case SYS_poll:
+#endif
+    case SYS_lseek:
+    case SYS_mmap:
+    case SYS_mprotect:
+    case SYS_munmap:
+    case SYS_brk:
+    case SYS_rt_sigaction:
+    case SYS_rt_sigprocmask:
+    case SYS_rt_sigreturn:
+    case SYS_ioctl:
+    case SYS_pread64:
+    case SYS_pwrite64:
+    case SYS_readv:
+    case SYS_writev:
+#ifdef __x86_64__
+    case SYS_pipe:
+    case SYS_select:
+#endif
+    case SYS_sched_yield:
+    case SYS_mremap:
+    case SYS_msync:
+    case SYS_mincore:
+    case SYS_madvise:
+    case SYS_dup:
+#ifdef __x86_64__
+    case SYS_dup2:
+    case SYS_pause:
+#endif
+    case SYS_nanosleep:
+    case SYS_getitimer:
+#ifdef __x86_64__
+    case SYS_alarm:
+#endif
+    case SYS_setitimer:
+    case SYS_getpid:
+    case SYS_sendfile:
+    case SYS_exit:
+    case SYS_wait4:
+    case SYS_uname:
+    case SYS_fcntl:
+    case SYS_flock:
+    case SYS_fsync:
+    case SYS_fdatasync:
+    case SYS_ftruncate:
+#ifdef __x86_64__
+    case SYS_getdents:
+#endif
+    case SYS_getdents64:
+    case SYS_getcwd:
+    case SYS_fchdir:
+    case SYS_fchmod:
+    case SYS_fchown:
+    case SYS_umask:
+    case SYS_gettimeofday:
+    case SYS_getrlimit:
+    case SYS_getrusage:
+    case SYS_sysinfo:
+    case SYS_times:
+    case SYS_getuid:
+    case SYS_getgid:
+    case SYS_geteuid:
+    case SYS_getegid:
+    case SYS_setpgid:
+    case SYS_getppid:
+#ifdef __x86_64__
+    case SYS_getpgrp:
+#endif
+    case SYS_getgroups:
+    case SYS_getresuid:
+    case SYS_getresgid:
+    case SYS_getpgid:
+    case SYS_getsid:
+    case SYS_rt_sigpending:
+    case SYS_rt_sigtimedwait:
+    case SYS_rt_sigqueueinfo:
+    case SYS_rt_sigsuspend:
+    case SYS_sigaltstack:
+#ifdef __x86_64__
+    case SYS_utime:
+#endif
+    case SYS_personality:
+    case SYS_fstatfs:
+    case SYS_getpriority:
+    case SYS_sched_getparam:
+    case SYS_sched_getscheduler:
+    case SYS_sched_get_priority_max:
+    case SYS_sched_get_priority_min:
+    case SYS_sched_rr_get_interval:
+#ifdef __x86_64__
+    case SYS_arch_prctl:
+#endif
+    case SYS_setrlimit:
+    case SYS_gettid:
+    case SYS_readahead:
+#ifdef __x86_64__
+    case SYS_time:
+#endif
+    case SYS_futex:
+    case SYS_fgetxattr:
+    case SYS_sched_getaffinity:
+#ifdef __x86_64__
+    case SYS_epoll_create:
+    case SYS_epoll_ctl_old:
+    case SYS_epoll_wait_old:
+#endif
+    case SYS_restart_syscall:
+    case SYS_set_tid_address:
+    case SYS_fadvise64:
+    case SYS_timer_create:
+    case SYS_timer_settime:
+    case SYS_timer_gettime:
+    case SYS_timer_getoverrun:
+    case SYS_timer_delete:
+    case SYS_clock_gettime:
+    case SYS_exit_group:
+#ifdef __x86_64__
+    case SYS_epoll_wait:
+#endif
+    case SYS_epoll_ctl:
+    case SYS_set_robust_list:
+    case SYS_get_robust_list:
+    case SYS_epoll_pwait:
+#ifdef __x86_64__
+    case SYS_eventfd:
+#endif
+    case SYS_eventfd2:
+    case SYS_epoll_create1:
+    case SYS_splice:
+    case SYS_tee:
+    case SYS_timerfd_create:
+    case SYS_timerfd_settime:
+    case SYS_timerfd_gettime:
+    case SYS_dup3:
+    case SYS_pipe2:
+    case SYS_preadv:
+    case SYS_pwritev:
+      // case SYS_mlock2:
+      // case SYS_preadv2:
+      // case SYS_pwritev2:
       return;
-    case __NR_open: {
+#ifdef __x86_64__
+    case SYS_open: {
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(1), path))
         return block(i, -EBADF);
@@ -218,7 +243,8 @@ public:
       }
       return;
     }
-    case __NR_openat: {
+#endif
+    case SYS_openat: {
       int at = i.arg(1);
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(2), path))
@@ -255,7 +281,7 @@ public:
       }
       return;
     }
-    case __NR_fstat: {
+    case SYS_fstat: {
       struct stat st;
       if (should_replace_stat("", st, i.arg(1), AT_EMPTY_PATH)) {
         if (!i.emplace_array(
@@ -266,8 +292,9 @@ public:
       }
       return;
     }
-    case __NR_stat:
-    case __NR_lstat: {
+#ifdef __x86_64__
+    case SYS_stat:
+    case SYS_lstat: {
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(1), path))
         return block(i, -EBADF);
@@ -276,7 +303,7 @@ public:
         return block(i, error);
       struct stat st;
       if (should_replace_stat(path, st, i.arg(1),
-                              i.sysnum() == __NR_lstat ? AT_SYMLINK_NOFOLLOW
+                              i.sysnum() == SYS_lstat ? AT_SYMLINK_NOFOLLOW
                                                        : 0)) {
         if (!i.emplace_array(
                 (void *)i.arg(2),
@@ -286,14 +313,22 @@ public:
       }
       return;
     }
-    case __NR_execve:
-    case __NR_access:
-    case __NR_chdir:
-    case __NR_readlink:
-    case __NR_getxattr:
-    case __NR_lgetxattr:
-    case __NR_statfs:
-    case __NR_utimes: {
+#endif
+    case SYS_execve:
+#ifdef __x86_64__
+    case SYS_access:
+#endif
+    case SYS_chdir:
+#ifdef __x86_64__
+    case SYS_readlink:
+#endif
+    case SYS_getxattr:
+    case SYS_lgetxattr:
+    case SYS_statfs:
+#ifdef __x86_64__
+    case SYS_utimes:
+#endif
+    {
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(1), path))
         return block(i, -EBADF);
@@ -302,7 +337,7 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_newfstatat: {
+    case SYS_newfstatat: {
       int at = i.arg(1);
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(2), path))
@@ -320,9 +355,9 @@ public:
       }
       return;
     }
-    case __NR_readlinkat:
-    case __NR_faccessat:
-      // case __NR_execveat:
+    case SYS_readlinkat:
+    case SYS_faccessat:
+      // case SYS_execveat:
       {
         int at = i.arg(1);
         std::string path;
@@ -333,8 +368,10 @@ public:
           return block(i, error);
         return;
       }
-    case __NR_futimesat:
-    case __NR_utimensat: {
+#ifdef __x86_64__
+    case SYS_futimesat:
+#endif
+    case SYS_utimensat: {
       int at = i.arg(1);
       std::string path;
       if (i.arg(2))
@@ -348,14 +385,15 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_truncate:
-    case __NR_mkdir:
-    case __NR_rmdir:
-    case __NR_creat:
-    case __NR_unlink:
-    case __NR_chmod:
-    case __NR_chown:
-    case __NR_lchown: {
+    case SYS_truncate:
+#ifdef __x86_64__
+    case SYS_mkdir:
+    case SYS_rmdir:
+    case SYS_creat:
+    case SYS_unlink:
+    case SYS_chmod:
+    case SYS_chown:
+    case SYS_lchown: {
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(1), path))
         return block(i, -EBADF);
@@ -364,10 +402,11 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_mkdirat:
-    case __NR_fchownat:
-    case __NR_unlinkat:
-    case __NR_fchmodat: {
+#endif
+    case SYS_mkdirat:
+    case SYS_fchownat:
+    case SYS_unlinkat:
+    case SYS_fchmodat: {
       int at = i.arg(1);
       std::string path;
       if (!i.fetch_cstr((void *)i.arg(2), path))
@@ -377,8 +416,9 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_link:
-    case __NR_symlink: {
+#ifdef __x86_64__
+    case SYS_link:
+    case SYS_symlink: {
       std::string path1, path2;
       if (!i.fetch_cstr((void *)i.arg(1), path1))
         return block(i, -EBADF);
@@ -392,7 +432,7 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_rename: {
+    case SYS_rename: {
       std::string path1, path2;
       if (!i.fetch_cstr((void *)i.arg(1), path1))
         return block(i, -EBADF);
@@ -406,8 +446,9 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_linkat:
-    case __NR_symlinkat: {
+#endif
+    case SYS_linkat:
+    case SYS_symlinkat: {
       std::string path1, path2;
       int at1 = i.arg(1);
       if (!i.fetch_cstr((void *)i.arg(2), path1))
@@ -423,8 +464,8 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_renameat:
-    case __NR_renameat2: {
+    case SYS_renameat:
+    case SYS_renameat2: {
       std::string path1, path2;
       int at1 = i.arg(1);
       if (!i.fetch_cstr((void *)i.arg(2), path1))
@@ -440,189 +481,193 @@ public:
         return block(i, error);
       return;
     }
-    case __NR_clone:
-    case __NR_fork:
-    case __NR_vfork:
+    case SYS_clone:
+#ifdef __x86_64__
+    case SYS_fork:
+    case SYS_vfork:
+#endif
       if (!can_create_thread(s))
         block(i, -EPERM);
       return;
-    case __NR_prlimit64:
+    case SYS_prlimit64:
       if (i.arg(3))
         block(i, -EPERM);
       return;
-    // case __NR_uselib:
-    // case __NR_ustat:
-    // case __NR_sysfs:
-    // case __NR_setpriority:
-    // case __NR_sched_setparam:
-    // case __NR_sched_setscheduler:
-    // case __NR_vhangup:
-    // case __NR_modify_ldt:
-    // case __NR_pivot_root:
-    // case __NR__sysctl:
-    // case __NR_prctl:
-    // case __NR_adjtimex:
-    // case __NR_chroot:
-    // case __NR_sync:
-    // case __NR_acct:
-    // case __NR_settimeofday:
-    // case __NR_mount:
-    // case __NR_umount2:
-    // case __NR_swapon:
-    // case __NR_swapoff:
-    // case __NR_reboot:
-    // case __NR_sethostname:
-    // case __NR_setdomainname:
-    // case __NR_iopl:
-    // case __NR_ioperm:
-    // case __NR_create_module:
-    // case __NR_init_module:
-    // case __NR_delete_module:
-    // case __NR_get_kernel_syms:
-    // case __NR_query_module:
-    // case __NR_quotactl:
-    // case __NR_nfsservctl:
-    // case __NR_getpmsg:
-    // case __NR_putpmsg:
-    // case __NR_afs_syscall:
-    // case __NR_tuxcall:
-    // case __NR_security:
-    // case __NR_setxattr:
-    // case __NR_lsetxattr:
-    // case __NR_fsetxattr:
-    // case __NR_listxattr:
-    // case __NR_llistxattr:
-    // case __NR_flistxattr:
-    // case __NR_removexattr:
-    // case __NR_lremovexattr:
-    // case __NR_fremovexattr:
-    // case __NR_sched_setaffinity:
-    // case __NR_set_thread_area:
-    // case __NR_io_setup:
-    // case __NR_io_destroy:
-    // case __NR_io_getevents:
-    // case __NR_io_submit:
-    // case __NR_io_cancel:
-    // case __NR_get_thread_area:
-    // case __NR_lookup_dcookie:
-    // case __NR_remap_file_pages:
-    // case __NR_semtimedop:
-    // case __NR_clock_settime:
-    // case __NR_clock_getres:
-    // case __NR_clock_nanosleep:
-    // case __NR_vserver:
-    // case __NR_mbind:
-    // case __NR_set_mempolicy:
-    // case __NR_get_mempolicy:
-    // case __NR_mq_open:
-    // case __NR_mq_unlink:
-    // case __NR_mq_timedsend:
-    // case __NR_mq_timedreceive:
-    // case __NR_mq_notify:
-    // case __NR_mq_getsetattr:
-    // case __NR_kexec_load:
-    // case __NR_waitid:
-    // case __NR_add_key:
-    // case __NR_request_key:
-    // case __NR_keyctl:
-    // case __NR_ioprio_set:
-    // case __NR_ioprio_get:
-    // case __NR_inotify_init:
-    // case __NR_inotify_add_watch:
-    // case __NR_inotify_rm_watch:
-    // case __NR_migrate_pages:
-    // case __NR_pselect6:
-    // case __NR_ppoll:
-    // case __NR_unshare:
-    // case __NR_sync_file_range:
-    // case __NR_vmsplice:
-    // case __NR_move_pages:
-    // case __NR_signalfd:
-    // case __NR_fallocate:
-    // case __NR_accept4:
-    // case __NR_signalfd4:
-    // case __NR_inotify_init1:
-    // case __NR_rt_tgsigqueueinfo:
-    // case __NR_perf_event_open:
-    // case __NR_recvmmsg:
-    // case __NR_fanotify_init:
-    // case __NR_fanotify_mark:
-    // case __NR_name_to_handle_at:
-    // case __NR_open_by_handle_at:
-    // case __NR_clock_adjtime:
-    // case __NR_syncfs:
-    // case __NR_sendmmsg:
-    // case __NR_setns:
-    // case __NR_getcpu:
-    // case __NR_process_vm_readv:
-    // case __NR_process_vm_writev:
-    // case __NR_kcmp:
-    // case __NR_finit_module:
-    // case __NR_sched_setattr:
-    // case __NR_sched_getattr:
-    // case __NR_seccomp:
-    // case __NR_getrandom:
-    // case __NR_memfd_create:
-    // case __NR_kexec_file_load:
-    // case __NR_bpf:
-    // case __NR_userfaultfd:
-    // case __NR_membarrier:
-    // case __NR_copy_file_range:
-    case __NR_shmget:
-    case __NR_shmat:
-    case __NR_shmctl:
-    case __NR_socket:
-    case __NR_connect:
-    case __NR_accept:
-    case __NR_sendto:
-    case __NR_recvfrom:
-    case __NR_sendmsg:
-    case __NR_recvmsg:
-    case __NR_shutdown:
-    case __NR_bind:
-    case __NR_listen:
-    case __NR_getsockname:
-    case __NR_getpeername:
-    case __NR_socketpair:
-    case __NR_setsockopt:
-    case __NR_getsockopt:
-    case __NR_semget:
-    case __NR_semop:
-    case __NR_semctl:
-    case __NR_shmdt:
-    case __NR_msgget:
-    case __NR_msgsnd:
-    case __NR_msgrcv:
-    case __NR_msgctl:
-    case __NR_ptrace:
-    case __NR_syslog:
-    case __NR_setuid:
-    case __NR_setgid:
-    case __NR_setsid:
-    case __NR_setreuid:
-    case __NR_setregid:
-    case __NR_setgroups:
-    case __NR_setresuid:
-    case __NR_setresgid:
-    case __NR_setfsuid:
-    case __NR_setfsgid:
-    case __NR_capget:
-    case __NR_capset:
-    case __NR_mknod:
-    case __NR_mlock:
-    case __NR_munlock:
-    case __NR_mlockall:
-    case __NR_munlockall:
-    case __NR_mknodat:
+    // case SYS_uselib:
+    // case SYS_ustat:
+    // case SYS_sysfs:
+    // case SYS_setpriority:
+    // case SYS_sched_setparam:
+    // case SYS_sched_setscheduler:
+    // case SYS_vhangup:
+    // case SYS_modify_ldt:
+    // case SYS_pivot_root:
+    // case SYS__sysctl:
+    // case SYS_prctl:
+    // case SYS_adjtimex:
+    // case SYS_chroot:
+    // case SYS_sync:
+    // case SYS_acct:
+    // case SYS_settimeofday:
+    // case SYS_mount:
+    // case SYS_umount2:
+    // case SYS_swapon:
+    // case SYS_swapoff:
+    // case SYS_reboot:
+    // case SYS_sethostname:
+    // case SYS_setdomainname:
+    // case SYS_iopl:
+    // case SYS_ioperm:
+    // case SYS_create_module:
+    // case SYS_init_module:
+    // case SYS_delete_module:
+    // case SYS_get_kernel_syms:
+    // case SYS_query_module:
+    // case SYS_quotactl:
+    // case SYS_nfsservctl:
+    // case SYS_getpmsg:
+    // case SYS_putpmsg:
+    // case SYS_afs_syscall:
+    // case SYS_tuxcall:
+    // case SYS_security:
+    // case SYS_setxattr:
+    // case SYS_lsetxattr:
+    // case SYS_fsetxattr:
+    // case SYS_listxattr:
+    // case SYS_llistxattr:
+    // case SYS_flistxattr:
+    // case SYS_removexattr:
+    // case SYS_lremovexattr:
+    // case SYS_fremovexattr:
+    // case SYS_sched_setaffinity:
+    // case SYS_set_thread_area:
+    // case SYS_io_setup:
+    // case SYS_io_destroy:
+    // case SYS_io_getevents:
+    // case SYS_io_submit:
+    // case SYS_io_cancel:
+    // case SYS_get_thread_area:
+    // case SYS_lookup_dcookie:
+    // case SYS_remap_file_pages:
+    // case SYS_semtimedop:
+    // case SYS_clock_settime:
+    // case SYS_clock_getres:
+    // case SYS_clock_nanosleep:
+    // case SYS_vserver:
+    // case SYS_mbind:
+    // case SYS_set_mempolicy:
+    // case SYS_get_mempolicy:
+    // case SYS_mq_open:
+    // case SYS_mq_unlink:
+    // case SYS_mq_timedsend:
+    // case SYS_mq_timedreceive:
+    // case SYS_mq_notify:
+    // case SYS_mq_getsetattr:
+    // case SYS_kexec_load:
+    // case SYS_waitid:
+    // case SYS_add_key:
+    // case SYS_request_key:
+    // case SYS_keyctl:
+    // case SYS_ioprio_set:
+    // case SYS_ioprio_get:
+    // case SYS_inotify_init:
+    // case SYS_inotify_add_watch:
+    // case SYS_inotify_rm_watch:
+    // case SYS_migrate_pages:
+    // case SYS_pselect6:
+    // case SYS_ppoll:
+    // case SYS_unshare:
+    // case SYS_sync_file_range:
+    // case SYS_vmsplice:
+    // case SYS_move_pages:
+    // case SYS_signalfd:
+    // case SYS_fallocate:
+    // case SYS_accept4:
+    // case SYS_signalfd4:
+    // case SYS_inotify_init1:
+    // case SYS_rt_tgsigqueueinfo:
+    // case SYS_perf_event_open:
+    // case SYS_recvmmsg:
+    // case SYS_fanotify_init:
+    // case SYS_fanotify_mark:
+    // case SYS_name_to_handle_at:
+    // case SYS_open_by_handle_at:
+    // case SYS_clock_adjtime:
+    // case SYS_syncfs:
+    // case SYS_sendmmsg:
+    // case SYS_setns:
+    // case SYS_getcpu:
+    // case SYS_process_vm_readv:
+    // case SYS_process_vm_writev:
+    // case SYS_kcmp:
+    // case SYS_finit_module:
+    // case SYS_sched_setattr:
+    // case SYS_sched_getattr:
+    // case SYS_seccomp:
+    // case SYS_getrandom:
+    // case SYS_memfd_create:
+    // case SYS_kexec_file_load:
+    // case SYS_bpf:
+    // case SYS_userfaultfd:
+    // case SYS_membarrier:
+    // case SYS_copy_file_range:
+    case SYS_shmget:
+    case SYS_shmat:
+    case SYS_shmctl:
+    case SYS_socket:
+    case SYS_connect:
+    case SYS_accept:
+    case SYS_sendto:
+    case SYS_recvfrom:
+    case SYS_sendmsg:
+    case SYS_recvmsg:
+    case SYS_shutdown:
+    case SYS_bind:
+    case SYS_listen:
+    case SYS_getsockname:
+    case SYS_getpeername:
+    case SYS_socketpair:
+    case SYS_setsockopt:
+    case SYS_getsockopt:
+    case SYS_semget:
+    case SYS_semop:
+    case SYS_semctl:
+    case SYS_shmdt:
+    case SYS_msgget:
+    case SYS_msgsnd:
+    case SYS_msgrcv:
+    case SYS_msgctl:
+    case SYS_ptrace:
+    case SYS_syslog:
+    case SYS_setuid:
+    case SYS_setgid:
+    case SYS_setsid:
+    case SYS_setreuid:
+    case SYS_setregid:
+    case SYS_setgroups:
+    case SYS_setresuid:
+    case SYS_setresgid:
+    case SYS_setfsuid:
+    case SYS_setfsgid:
+    case SYS_capget:
+    case SYS_capset:
+#ifdef __x86_64__
+    case SYS_mknod:
+#endif
+    case SYS_mlock:
+    case SYS_munlock:
+    case SYS_mlockall:
+    case SYS_munlockall:
+    case SYS_mknodat:
       block(i, -EPERM);
       return;
-    case __NR_kill:
-    case __NR_tkill:
+    case SYS_kill:
+    case SYS_tkill:
       if (s.find_tid(i.arg(1)) == s.threads.end())
         return block(i, -EPERM);
       else
         return;
-    case __NR_tgkill:
+    case SYS_tgkill:
       if ((i.arg(1) != -1 && s.find_tid(i.arg(1)) == s.threads.end()) ||
           s.find_tid(i.arg(2)) == s.threads.end())
         return block(i, -EPERM);
