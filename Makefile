@@ -1,19 +1,23 @@
 ARCH=$(shell uname -m)
 
-CXX= g++
-CFLAGS= -O0 -ggdb -std=c++11
+CXX=g++
+CFLAGS=-O0 -ggdb -std=c++11
 CPPFLAGS=
-LDFLAGS= -lpthread
+LDFLAGS=-lpthread
 
-OBJS= main.o sandbox.o path.o wakeup.o config.o
+OBJS=main.o sandbox.o path.o wakeup.o config.o
+BINDIR=bin
 
-all: sandbox
+all: $(BINDIR)/sandbox
 
 clean:
 	rm -f sandbox $(OBJS) arch.h
 
-sandbox: $(OBJS)
-	$(CXX) -o $@ $+ $(CFLAGS) $(LDFLAGS)
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
+$(BINDIR)/sandbox: $(BINDIR) $(OBJS)
+	$(CXX) -o $@ $(filter %.o,$+) $(CFLAGS) $(LDFLAGS)
 
 %.o: %.cpp
 	$(CXX) -c -o $@ $< $(CFLAGS) $(CPPFLAGS)
