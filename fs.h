@@ -207,6 +207,8 @@ public:
     case SYS_get_mempolicy:
     case SYS_preadv2:
     case SYS_pwritev2:
+    case SYS_pselect6:
+    case SYS_getrandom:
       return;
 #ifdef __x86_64__
     case SYS_open: {
@@ -574,7 +576,6 @@ public:
     // case SYS_inotify_add_watch:
     // case SYS_inotify_rm_watch:
     // case SYS_migrate_pages:
-    // case SYS_pselect6:
     // case SYS_unshare:
     // case SYS_sync_file_range:
     // case SYS_vmsplice:
@@ -603,7 +604,6 @@ public:
     // case SYS_sched_setattr:
     // case SYS_sched_getattr:
     // case SYS_seccomp:
-    case SYS_getrandom:
     // case SYS_memfd_create:
     // case SYS_kexec_file_load:
     // case SYS_bpf:
