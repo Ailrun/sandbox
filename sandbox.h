@@ -126,6 +126,7 @@ pid_t Sandbox<T>::spawn_process(char const *path, int argc,
       hook();
     execvp(path, (char **)args);
     panic_errno("execvp");
+    return -1;
   } else {
     delete[] args;
     T &init = *thread_add(pid);
