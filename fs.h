@@ -603,7 +603,7 @@ public:
     // case SYS_sched_setattr:
     // case SYS_sched_getattr:
     // case SYS_seccomp:
-    // case SYS_getrandom:
+    case SYS_getrandom:
     // case SYS_memfd_create:
     // case SYS_kexec_file_load:
     // case SYS_bpf:
