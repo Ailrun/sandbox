@@ -11,7 +11,8 @@ BINDIR=bin
 all: $(BINDIR)/sandbox
 
 clean:
-	rm -f sandbox $(OBJS) arch.h
+	rm -f $(BINDIR)/sandbox $(OBJS) arch.h
+	rm -rf $(BINDIR)
 
 $(BINDIR):
 	mkdir -p $(BINDIR)

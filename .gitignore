@@ -1,3 +1,4 @@
+arch.h
 *.o
 sandbox
 sandbox.conf
